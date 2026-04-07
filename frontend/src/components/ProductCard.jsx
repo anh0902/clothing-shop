@@ -10,11 +10,11 @@ const ProductCard = ({ sach }) => {
     <Link to={`/product/${sach.id}`} className="pc2-card">
       <div className="pc2-img-wrap">
         <img
-          src={sach.anh_bia || `https://picsum.photos/seed/${sach.id}/240/320`}
+          src={sach.anh_bia || '/images/placeholder-book.jpg'}
           alt={sach.ten_sach}
           className="pc2-img"
           loading="lazy"
-          referrerPolicy="no-referrer"
+          onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder-book.jpg'; }}
         />
         {sach.so_luong <= 0 && <span className="pc2-oos">Hết hàng</span>}
       </div>

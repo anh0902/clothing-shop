@@ -6,22 +6,25 @@ import {
   TrendingUp, Layers, ChevronRight, RefreshCw, ChevronLeft,
 } from 'lucide-react';
 
-/* ── Banner slides ── */
+// ── Static banner imports (Vite bundles these with hashed filenames — safe for deploy) ──
+import banner1   from '../assets/banner/banner1.jpg';
+import banner2   from '../assets/banner/banner2.jpg';
+import banner3   from '../assets/banner/banner3.jpg';
+import bmin0    from '../assets/banner/bannermin.jpg';
+import bmin1    from '../assets/banner/bannermin1.jpg';
+import bmin2    from '../assets/banner/bannermin2.jpg';
+import city1    from '../assets/banner/city1.jpg';
+import city2    from '../assets/banner/city2.jpg';
+import city3    from '../assets/banner/city3.jpg';
+
+/* ── Banner slides — dùng biến import thay vì string path để Vite xử lý đúng khi build ── */
 const BANNERS = [
-  { src: '/src/assets/banner/banner1.jpg', alt: 'Banner 1' },
-  { src: '/src/assets/banner/banner2.jpg', alt: 'Banner 2' },
-  { src: '/src/assets/banner/banner3.jpg', alt: 'Banner 3' },
+  { src: banner1, alt: 'Banner 1' },
+  { src: banner2, alt: 'Banner 2' },
+  { src: banner3, alt: 'Banner 3' },
 ];
-const BANNERS_MIN = [
-  '/src/assets/banner/bannermin.jpg',
-  '/src/assets/banner/bannermin1.jpg',
-  '/src/assets/banner/bannermin2.jpg',
-];
-const BANNERS_CITY = [
-  '/src/assets/banner/city1.jpg',
-  '/src/assets/banner/city2.jpg',
-  '/src/assets/banner/city3.jpg',
-];
+const BANNERS_MIN = [bmin0, bmin1, bmin2];
+const BANNERS_CITY = [city1, city2, city3];
 
 /* ─────────────────────────────────────────── helpers ── */
 const fmtPrice = (n) => new Intl.NumberFormat('vi-VN').format(n || 0);
@@ -48,9 +51,10 @@ const BookCard = ({ sach }) => {
     <Link to={`/product/${sach.id}`} className="hx-card">
       <div className="hx-card-img">
         <img
-          src={sach.anh_bia || `https://picsum.photos/seed/${sach.id}hx/240/320`}
+          src={sach.anh_bia || '/images/placeholder-book.jpg'}
           alt={sach.ten_sach} className="hx-img"
-          loading="lazy" referrerPolicy="no-referrer"
+          loading="lazy"
+          onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder-book.jpg'; }}
         />
         {sach.so_luong <= 0 && <span className="hx-oos">Hết hàng</span>}
       </div>

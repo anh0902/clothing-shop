@@ -74,8 +74,9 @@ const RelCard = ({ sach }) => (
   <Link to={`/product/${sach.id}`} className="pd3-rel-card">
     <div className="pd3-rel-img">
       <img
-        src={sach.anh_bia || `https://picsum.photos/seed/${sach.id}r/200/267`}
-        alt={sach.ten_sach} loading="lazy" referrerPolicy="no-referrer"
+        src={sach.anh_bia || '/images/placeholder-book.jpg'}
+        alt={sach.ten_sach} loading="lazy"
+        onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder-book.jpg'; }}
       />
       {sach.so_luong <= 0 && <span className="pd3-oos-badge">Hết hàng</span>}
     </div>
@@ -186,9 +187,9 @@ const ProductDetail = () => {
             <div className="pd3-img-col">
               <div className="pd3-img-frame">
                 <img
-                  src={book.anh_bia || `https://picsum.photos/seed/${book.id}d/400/533`}
+                  src={book.anh_bia || '/images/placeholder-book.jpg'}
                   alt={book.ten_sach} className="pd3-img"
-                  referrerPolicy="no-referrer"
+                  onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder-book.jpg'; }}
                 />
                 {oos && <div className="pd3-img-oos">Hết hàng</div>}
               </div>
