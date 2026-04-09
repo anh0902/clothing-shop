@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // 1. Instance cho Storefront (Laravel - Port 8000)
 export const axiosUser = axios.create({
-  baseURL: import.meta.env.VITE_API_USER_URL || 'https://nhom1be.onrender.com/api',
+  baseURL: import.meta.env.VITE_API_URL || 'https://nhom1be.onrender.com/api',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
