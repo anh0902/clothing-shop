@@ -1,16 +1,17 @@
 // frontend/src/axiosClient.js
 import axios from 'axios';
 
-// 1. Instance cho Storefront (Laravel - Port 8000)
+// 1. Instance cho Storefront (Laravel - Port 8000 / Render)
 export const axiosUser = axios.create({
   baseURL: import.meta.env.VITE_API_USER_URL || 'https://nhom1be.onrender.com/api',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest'
   },
 });
 
-// 2. Instance cho Admin (Spring Boot - Port 8080)
+// 2. Instance cho Admin (Spring Boot - Port 8080 / Render)
 export const axiosAdmin = axios.create({
   baseURL: import.meta.env.VITE_API_ADMIN_URL || 'https://webchieut6.onrender.com/api',
   headers: {

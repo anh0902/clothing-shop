@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import SkeletonCard from '../components/SkeletonCard';
+import { getImageUrl } from '../utils/urlHelper';
 
 // ── Static banner imports (Vite bundles these with hashed filenames — safe for deploy) ──
 import banner1   from '../assets/banner/banner1.jpg';
@@ -40,7 +41,7 @@ const mapSach = (s) => ({
   gia: s.gia,
   so_luong: s.so_luong || s.soLuong,
   mo_ta: s.mo_ta || s.moTa,
-  anh_bia: s.anh_bia || s.anhBia,
+  anh_bia: getImageUrl(s.anh_bia || s.anhBia),
   loai_sach_id: s.loai_sach_id || s.loaiSachId,
   trang_thai: s.trang_thai || s.trangThai
 });

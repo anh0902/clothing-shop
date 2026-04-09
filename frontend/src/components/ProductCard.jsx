@@ -1,24 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../utils/urlHelper';
 
 // ── ProductCard tối giản theo đúng thiết kế mẫu ──────────────────────────────
 const ProductCard = ({ sach }) => {
   const price = sach.gia_ban || sach.gia || 0;
   const fmt = (n) => new Intl.NumberFormat('vi-VN').format(n) + ' VND';
 
-  const getImg = (path) => {
-    if (!path) return '/images/placeholder-book.jpg';
-    if (path.startsWith('http') || path.startsWith('blob:')) return path;
-    const base = 'http://localhost:8000';
-    if (path.startsWith('assets/')) return `${base}/${path}`;
-    return `${base}/assets/product/${path}`;
-  };
+  // Đã sử dụng getImageUrl từ ../utils/urlHelper
 
   return (
     <Link to={`/product/${sach.id}`} className="pc2-card">
       <div className="pc2-img-wrap">
         <img
-          src={getImg(sach.anh_bia)}
+          src={getImageUrl(sach.anh_bia)}
           alt={sach.ten_sach}
           className="pc2-img"
           loading="lazy"

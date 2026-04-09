@@ -11,18 +11,13 @@ import { useAuth } from '../AuthContext';
 import { useCart } from '../CartContext';
 import { bookAPI, cartAPI } from '../services/api';
 import axiosClient from '../axiosClient';
+import { getImageUrl } from '../utils/urlHelper';
 import './ProductDetail.css';
 
 const fmt = (n) => new Intl.NumberFormat('vi-VN').format(n || 0) + '₫';
 const extractList = (r) => r.data?.data?.data || r.data?.data || [];
 
-const getImg = (path) => {
-  if (!path) return '/images/placeholder-book.jpg';
-  if (path.startsWith('http') || path.startsWith('blob:')) return path;
-  const base = 'http://localhost:8000';
-  if (path.startsWith('assets/')) return `${base}/${path}`;
-  return `${base}/assets/product/${path}`;
-};
+// Đã chuyển logic sang src/utils/urlHelper.js
 
 /* ══════════════ Skeleton ══════════════ */
 const Skeleton = () => (
@@ -81,7 +76,7 @@ const RelCard = ({ sach }) => (
   <Link to={`/product/${sach.id}`} className="pd3-rel-card">
     <div className="pd3-rel-img">
       <img
-        src={getImg(sach.anh_bia)}
+        src={getImageUrl(sach.anh_bia)}
         alt={sach.ten_sach} loading="lazy"
         onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder-book.jpg'; }}
       />
@@ -168,10 +163,23 @@ const ProductDetail = () => {
     if (qty > book.so_luong) { toast.error(`Chỉ còn ${book.so_luong} sản phẩm trong kho`); return; }
     setAdding(true);
     try {
+      console.log('--- ADD TO CART DEBUG ---');
+      console.log('Payload:', { sach_id: book.id, so_luong: qty });
+      
       const res = await cartAPI.addToCart({ sach_id: book.id, so_luong: qty });
-      if (res.data?.success) { toast.success(res.data.message || 'Đã thêm vào giỏ hàng'); fetchCart(); }
-      else toast.error(res.data?.message || 'Có lỗi xảy ra');
-    } catch (e) { toast.error(e.response?.data?.message || 'Không thể thêm vào giỏ hàng'); }
+      
+      console.log('Response:', res.data);
+
+      if (res.data?.success) { 
+        toast.success(res.data.message || 'Đã thêm vào giỏ hàng'); 
+        fetchCart(); 
+      } else {
+        toast.error(res.data?.message || 'Có lỗi khi thêm vào giỏ');
+      }
+    } catch (e) { 
+      console.error('Cart Error Detail:', e.response?.data || e.message);
+      toast.error(e.response?.data?.message || 'Không thể kết nối Server giỏ hàng'); 
+    }
     finally { setAdding(false); }
   };
 
@@ -214,7 +222,7 @@ const ProductDetail = () => {
             <div className="pd3-img-col">
               <div className="pd3-img-frame">
                 <img
-                  src={getImg(book.anh_bia)}
+                  src={getImageUrl(book.anh_bia)}
                   alt={book.ten_sach} className="pd3-img"
                   onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder-book.jpg'; }}
                 />

@@ -24,6 +24,7 @@ import OrderDetail from './pages/OrderDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import AdminApp from './book-admin/AdminApp';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const MainLayout = ({ children }) => {
   const location = useLocation();
@@ -69,7 +70,17 @@ const AnimatedRoutes = () => {
         <Route path="/orders/:id" element={<PageWrapper><OrderDetail /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
-        <Route path="/admin/*" element={<AdminApp />} />
+        
+        {/* Protected Admin Routes */}
+        <Route 
+          path="/admin/*" 
+          element={
+            <ProtectedRoute adminOnly={true}>
+              <AdminApp />
+            </ProtectedRoute>
+          } 
+        />
+        
         <Route path="*" element={<PageWrapper><Home /></PageWrapper>} />
       </Routes>
     </AnimatePresence>

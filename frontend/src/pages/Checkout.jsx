@@ -8,6 +8,7 @@ import {
   User, Phone, MapPin, MessageSquare, CreditCard, Truck,
   CheckCircle2, ShoppingCart, Loader, AlertCircle
 } from 'lucide-react';
+import { getImageUrl } from '../utils/urlHelper';
 import '../styles/design-system.css';
 import './Checkout.css';
 
@@ -106,11 +107,19 @@ const Checkout = () => {
         ghi_chu: form.ghi_chu,
         phuong_thuc_thanh_toan: payMethod === 'ONLINE' ? 'transfer' : 'cod'
       };
-      await orderAPI.checkout(payload);
+
+      console.log('--- CHECKOUT DEBUG ---');
+      console.log('Payload:', payload);
+
+      const res = await orderAPI.checkout(payload);
+      
+      console.log('Response:', res.data);
+
       await fetchCart();
       toast.success('Đặt hàng thành công!');
       navigate('/confirm');
     } catch (err) {
+      console.error('Checkout Error Detail:', err.response?.data || err.message);
       const msg = err.response?.data?.message || 'Lỗi khi đặt hàng';
       const apiErrors = err.response?.data?.errors;
       toast.error(apiErrors ? Object.values(apiErrors)[0]?.[0] : msg);
@@ -213,7 +222,7 @@ const Checkout = () => {
                   <div className="ck-sum-list">
                     {cartItems.map(it => (
                       <div key={it.sach_id} className="ck-sum-item">
-                        <img src={it.sach?.anh_bia || 'https://picsum.photos/seed/b/50/70'} alt="cover" className="ck-sum-img"/>
+                        <img src={getImageUrl(it.sach?.anh_bia)} alt="cover" className="ck-sum-img"/>
                         <div className="ck-sum-info">
                           <span className="ck-sum-name">{it.sach?.ten_sach}</span>
                           <span className="ck-sum-qty">Số lượng: {it.so_luong}</span>
