@@ -5,6 +5,7 @@ import { Package, ArrowLeft, XCircle, CheckCircle2, Clock, Loader, MapPin, Truck
 import { useAuth } from '../AuthContext';
 import toast from 'react-hot-toast';
 import '../styles/design-system.css';
+import './OrderDetail.css';
 
 const fmt     = (n) => new Intl.NumberFormat('vi-VN').format(n) + 'đ';
 const fmtDate = (d) => d ? new Date(d).toLocaleString('vi-VN') : '';
@@ -56,16 +57,16 @@ const OrderDetail = () => {
   };
 
   if (loading) return (
-    <div className="ds-page" style={{ display: 'flex', justifyContent: 'center', padding: '5rem 0' }}>
-      <Loader size={38} className="ds-spin" style={{ color: '#1e3a5f' }} />
+    <div className="ds-page orderdetail-auto-1">
+      <Loader size={38} className="ds-spin orderdetail-auto-2" />
     </div>
   );
   if (error || !order) return (
     <div className="ds-page">
-      <div className="ds-wrap" style={{ textAlign: 'center', padding: '4rem 1rem' }}>
-        <AlertCircle size={52} color="#dc2626" style={{ margin: '0 auto 1rem' }} />
-        <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#111827', marginBottom: '1.5rem' }}>Không tìm thấy đơn hàng</h2>
-        <Link to="/orders" className="ds-btn-outline" style={{ display: 'inline-flex', width: 'auto' }}>
+      <div className="ds-wrap orderdetail-auto-3">
+        <AlertCircle size={52} color="#dc2626" className="orderdetail-auto-4" />
+        <h2 className="orderdetail-auto-5">Không tìm thấy đơn hàng</h2>
+        <Link to="/orders" className="ds-btn-outline orderdetail-auto-6">
           <ArrowLeft size={16} /> Quay lại danh sách
         </Link>
       </div>
@@ -94,7 +95,7 @@ const OrderDetail = () => {
           {/* Main Col */}
           <div className="od-col-main">
             {/* Products */}
-            <div className="ds-card" style={{ marginBottom: '1.25rem' }}>
+            <div className="ds-card orderdetail-auto-7">
               <h2 className="ds-card-title"><Package size={16} /> Sản phẩm đã đặt</h2>
               <div className="od-items">
                 {items.length === 0 && <p className="od-empty-text">Không có sản phẩm nào.</p>}
@@ -103,7 +104,7 @@ const OrderDetail = () => {
                     <img src={it.sach?.anh_bia || 'https://picsum.photos/seed/b/50/70'} alt="cover" className="od-img" />
                     <div className="od-meta">
                       <Link to={`/product/${it.sach_id}`} className="od-name">{it.sach?.ten_sach || `Sách #${it.sach_id}`}</Link>
-                      <span className="od-price-qty">{fmt(it.don_gia)} <span style={{color: '#9ca3af', margin: '0 4px'}}>x</span> {it.so_luong}</span>
+                      <span className="od-price-qty">{fmt(it.don_gia)} <span className="orderdetail-auto-8">x</span> {it.so_luong}</span>
                     </div>
                     <span className="od-total">{fmt(it.thanh_tien)}</span>
                   </div>
@@ -125,7 +126,7 @@ const OrderDetail = () => {
 
           {/* Side Col */}
           <div className="od-col-side">
-            <div className="ds-card" style={{ position: 'sticky', top: '80px' }}>
+            <div className="ds-card orderdetail-auto-9">
               <h2 className="ds-card-title"><FileText size={16} /> Tổng quan đơn hàng</h2>
               <div className="od-sum-bd">
                 <div className="od-sum-row">
@@ -133,7 +134,7 @@ const OrderDetail = () => {
                   <span className="od-sum-val">{fmtDate(order.ngay_tao)}</span>
                 </div>
                 <div className="od-sum-row">
-                  <span className="od-sum-lbl" style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Truck size={14}/> Thanh toán:</span>
+                  <span className="od-sum-lbl orderdetail-auto-10"><Truck size={14}/> Thanh toán:</span>
                   <span className="od-sum-val">{order.phuong_thuc_thanh_toan}</span>
                 </div>
 
@@ -157,56 +158,6 @@ const OrderDetail = () => {
           </div>
         </div>
       </div>
-
-      <style>{`
-        .od-back {
-          display: inline-flex; align-items: center; gap: 6px;
-          margin-bottom: 1.25rem; font-size: 0.85rem; font-weight: 500;
-          color: #6b7280; text-decoration: none; transition: color .15s;
-        }
-        .od-back:hover { color: #1e3a5f; text-decoration: underline; }
-
-        .od-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px; }
-        .od-title { font-size: 1.4rem; font-weight: 900; color: #111827; margin: 0; }
-
-        .od-layout { display: grid; grid-template-columns: 1fr 340px; gap: 1.25rem; align-items: start; }
-
-        /* Items list */
-        .od-items { padding: 0.5rem 1.4rem; }
-        .od-item { display: flex; align-items: center; gap: 14px; padding: 1rem 0; }
-        .od-item.sep { border-bottom: 1px solid #f1f5f9; }
-        .od-img { width: 54px; height: 72px; border-radius: 6px; object-fit: cover; border: 1px solid #f1f3f6; }
-        .od-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
-        .od-name { font-size: 0.9rem; font-weight: 700; color: #111827; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .od-name:hover { color: #1e3a5f; text-decoration: underline; }
-        .od-price-qty { font-size: 0.82rem; font-weight: 600; color: #4b5563; }
-        .od-total { font-size: 0.95rem; font-weight: 800; color: #dc2626; flex-shrink: 0; }
-        .od-empty-text { font-size: 0.85rem; color: #6b7280; padding: 1rem 0; margin: 0; }
-
-        /* Info Grid */
-        .od-info-grid { padding: 1.2rem 1.4rem 1.4rem; display: flex; flex-direction: column; gap: 0.85rem; }
-        .od-info-row { display: flex; font-size: 0.88rem; }
-        .od-info-row span { width: 140px; color: #6b7280; flex-shrink: 0; }
-        .od-info-row strong { color: #111827; font-weight: 600; line-height: 1.4; }
-
-        /* Summary */
-        .od-sum-bd { padding: 1.25rem; }
-        .od-sum-row { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.6rem; }
-        .od-sum-lbl { color: #6b7280; }
-        .od-sum-val { color: #111827; font-weight: 600; }
-        .od-sum-line { height: 1px; background: #e9ecef; margin: 1.2rem 0; }
-        .od-sum-grand { display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; font-weight: 600; color: #111827; }
-        .od-sum-grand-val { font-size: 1.3rem; font-weight: 900; color: #dc2626; }
-        .od-cancel-btn { background: #dc2626; margin-top: 1.5rem; }
-        .od-cancel-btn:hover:not(:disabled) { background: #b91c1c; }
-
-        @media (max-width: 900px) { .od-layout { grid-template-columns: 1fr; } }
-        @media (max-width: 480px) {
-          .od-item { align-items: flex-start; }
-          .od-info-row { flex-direction: column; gap: 3px; }
-          .od-info-row span { width: auto; font-size: 0.8rem; }
-        }
-      `}</style>
     </div>
   );
 };

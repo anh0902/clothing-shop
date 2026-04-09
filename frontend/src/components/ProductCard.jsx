@@ -6,11 +6,19 @@ const ProductCard = ({ sach }) => {
   const price = sach.gia_ban || sach.gia || 0;
   const fmt = (n) => new Intl.NumberFormat('vi-VN').format(n) + ' VND';
 
+  const getImg = (path) => {
+    if (!path) return '/images/placeholder-book.jpg';
+    if (path.startsWith('http') || path.startsWith('blob:')) return path;
+    const base = 'http://localhost:8000';
+    if (path.startsWith('assets/')) return `${base}/${path}`;
+    return `${base}/assets/product/${path}`;
+  };
+
   return (
     <Link to={`/product/${sach.id}`} className="pc2-card">
       <div className="pc2-img-wrap">
         <img
-          src={sach.anh_bia || '/images/placeholder-book.jpg'}
+          src={getImg(sach.anh_bia)}
           alt={sach.ten_sach}
           className="pc2-img"
           loading="lazy"

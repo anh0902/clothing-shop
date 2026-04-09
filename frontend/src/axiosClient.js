@@ -1,16 +1,26 @@
 // frontend/src/axiosClient.js
 import axios from 'axios';
 
-const axiosClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://nhom1be.onrender.com/api',
+// 1. Instance cho Storefront (Laravel - Port 8000)
+export const axiosUser = axios.create({
+  baseURL: import.meta.env.VITE_API_USER_URL || 'https://nhom1be.onrender.com/api',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
 });
 
-// Thêm token vào mỗi request
-axiosClient.interceptors.request.use((config) => {
+// 2. Instance cho Admin (Spring Boot - Port 8080)
+export const axiosAdmin = axios.create({
+  baseURL: import.meta.env.VITE_API_ADMIN_URL || 'https://webchieut6.onrender.com/api',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+});
+
+// Interceptor cho User (Laravel)
+axiosUser.interceptors.request.use((config) => {
   const token = localStorage.getItem('access_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -18,22 +28,30 @@ axiosClient.interceptors.request.use((config) => {
   return config;
 });
 
-// Bắt lỗi toàn cục
-axiosClient.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response && error.response.status === 401) {
-      // Nếu API trả về 401 do đăng nhập sai mật khẩu thì không văng trang
-      if (error.config && error.config.url && error.config.url.endsWith('/login')) {
-        return Promise.reject(error);
-      }
-      // Token hết hạn hoặc truy cập trái phép
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('user');
-      window.location.href = '/login'; // Ép văng ra trang login
-    }
-    return Promise.reject(error);
+// Interceptor cho Admin (Spring Boot)
+axiosAdmin.interceptors.request.use((config) => {
+  const token = localStorage.getItem('access_token'); // Giả định dùng chung token login từ Laravel
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
-);
+  return config;
+});
 
-export default axiosClient;
+// Error handling chung
+const handleResponseError = (error) => {
+  if (error.response && error.response.status === 401) {
+    if (error.config && error.config.url && (error.config.url.endsWith('/login') || error.config.url.endsWith('/register'))) {
+      return Promise.reject(error);
+    }
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
+    window.location.href = '/login';
+  }
+  return Promise.reject(error);
+};
+
+axiosUser.interceptors.response.use(res => res, handleResponseError);
+axiosAdmin.interceptors.response.use(res => res, handleResponseError);
+
+// Xuất mặc định trỏ về User (để giữ tương thích cho các file cũ chưa update)
+export default axiosUser;

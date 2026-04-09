@@ -57,12 +57,19 @@
 
 /* ── Input field ── */
 .ds-field { margin-bottom: 1.1rem; }
+.ds-field-compact { display: flex; flex-direction: column; gap: 0.5rem; }
 .ds-label {
   display: block;
   font-size: 0.82rem;
   font-weight: 700;
   color: #374151;
   margin-bottom: 0.4rem;
+}
+.ds-label-compact {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0px;
 }
 .ds-input-wrap {
   position: relative;
@@ -71,26 +78,55 @@
 }
 .ds-input-ico {
   position: absolute;
-  left: 13px;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #94a3b8;
   pointer-events: none;
-  flex-shrink: 0;
+  font-size: 14px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
 }
-.ds-input {
+.ds-input, .ds-input-refined {
   width: 100%;
-  padding: 0.62rem 1rem 0.62rem 2.5rem;
-  border: 1.5px solid var(--ds-border);
-  border-radius: 10px;
-  font-size: 0.88rem;
-  background: var(--ds-input-bg);
-  color: var(--ds-text);
-  outline: none;
-  transition: border-color .18s, background .18s;
+  padding: 0.6rem 1rem 0.6rem 2.75rem !important;
+  border: 1.5px solid var(--ds-border) !important;
+  border-radius: 12px !important;
+  font-size: 0.9375rem !important;
+  background: var(--ds-input-bg) !important;
+  color: var(--ds-text) !important;
+  outline: none !important;
+  transition: all 0.2s ease !important;
+  display: block !important;
+  line-height: 1.2 !important;
+  height: auto !important;
+  box-sizing: border-box !important;
 }
-.ds-input:focus { border-color: var(--ds-blue); background: #fff; }
-.ds-input.has-error { border-color: var(--ds-red); }
-.ds-input.is-valid  { border-color: var(--ds-green); }
-.ds-input-pass { padding-right: 2.8rem; }
+.ds-input:focus, .ds-input-refined:focus { 
+  border-color: var(--ds-blue) !important; 
+  background: #fff !important; 
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08) !important;
+}
+
+/* Autofill fixes - forced with !important to defeat browser defaults */
+.ds-input:-webkit-autofill,
+.ds-input:-webkit-autofill:hover, 
+.ds-input:-webkit-autofill:focus,
+.ds-input-refined:-webkit-autofill,
+.ds-input-refined:-webkit-autofill:hover, 
+.ds-input-refined:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ds-text) !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  background-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+.ds-input.has-error, .ds-input-refined.has-error { border-color: var(--ds-red) !important; }
+.ds-input.is-valid, .ds-input-refined.is-valid  { border-color: var(--ds-green) !important; }
+.ds-input-pass { padding-right: 2.85rem !important; }
+
 .ds-field-error {
   display: flex;
   align-items: center;
@@ -107,7 +143,7 @@
   justify-content: center;
   gap: 8px;
   width: 100%;
-  padding: 0.78rem 1.5rem;
+  padding: 0.7rem 1.5rem;
   background: var(--ds-navy);
   color: #fff;
   font-size: 0.92rem;

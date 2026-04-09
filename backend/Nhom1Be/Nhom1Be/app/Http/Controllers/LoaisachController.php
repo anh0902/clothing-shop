@@ -25,5 +25,4 @@ class LoaisachController extends Controller
             'data'    => $loaisach
         ]);
     }
-    
 }

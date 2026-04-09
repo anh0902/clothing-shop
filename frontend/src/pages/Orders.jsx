@@ -5,6 +5,7 @@ import { Package, Clock, XCircle, CheckCircle2, FileText, Loader, ChevronRight, 
 import { useAuth } from '../AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/design-system.css';
+import './Orders.css';
 
 const fmt        = (n)  => new Intl.NumberFormat('vi-VN').format(n) + 'đ';
 const fmtDate    = (d)  => {
@@ -57,8 +58,8 @@ const Orders = () => {
   }, [user, authLoading, navigate]);
 
   if (loading) return (
-    <div className="ds-page" style={{ display: 'flex', justifyContent: 'center', padding: '5rem 0' }}>
-      <Loader size={38} className="ds-spin" style={{ color: '#1e3a5f' }} />
+    <div className="ds-page orders-auto-1">
+      <Loader size={38} className="ds-spin orders-auto-2" />
     </div>
   );
 
@@ -72,11 +73,11 @@ const Orders = () => {
         </div>
 
         {orders.length === 0 ? (
-          <div className="ds-card" style={{ textAlign: 'center', padding: '4rem 2rem' }}>
-            <FileText size={52} style={{ color: '#d1d5db', marginBottom: 14 }} />
-            <h2 style={{ fontWeight: 800, color: '#111827', marginBottom: 8 }}>Bạn chưa có đơn hàng nào</h2>
-            <p style={{ color: '#6b7280', marginBottom: 20 }}>Hãy bắt đầu mua sắm để tạo đơn hàng đầu tiên!</p>
-            <button onClick={() => navigate('/category')} className="ds-btn-primary" style={{ width: 'auto', padding: '0.7rem 2rem', margin: '0 auto' }}>
+          <div className="ds-card orders-auto-3">
+            <FileText size={52} className="orders-auto-4" />
+            <h2 className="orders-auto-5">Bạn chưa có đơn hàng nào</h2>
+            <p className="orders-auto-6">Hãy bắt đầu mua sắm để tạo đơn hàng đầu tiên!</p>
+            <button onClick={() => navigate('/category')} className="ds-btn-primary orders-auto-7">
               Bắt đầu mua sắm
             </button>
           </div>
@@ -120,7 +121,7 @@ const Orders = () => {
                     <span className="ords-total-label">Tổng cộng</span>
                     <span className="ords-total-val">{fmt(order.thanh_tien || order.tong_tien)}</span>
                   </div>
-                  <div style={{ display: 'flex', gap: '0.75rem' }}>
+                  <div className="orders-auto-8">
                     {order.trang_thai === 'CHỜ_XÁC_NHẬN' && (
                       <button
                         className="ords-cancel-btn"
@@ -141,56 +142,6 @@ const Orders = () => {
           </div>
         )}
       </div>
-
-      <style>{`
-        .ords-list { display: flex; flex-direction: column; gap: 1rem; }
-
-        /* Card */
-        .ords-card { overflow: hidden; }
-        .ords-card-hd {
-          display: flex; align-items: center; justify-content: space-between;
-          padding: 1rem 1.4rem; border-bottom: 1px solid #f1f5f9; background: #fafbfc;
-        }
-        .ords-card-id { display: flex; align-items: baseline; gap: 6px; }
-        .ords-id-label { font-size: 0.78rem; color: #6b7280; font-weight: 500; }
-        .ords-id-val   { font-size: 0.98rem; font-weight: 900; color: #1e3a5f; }
-
-        /* Body */
-        .ords-card-body { padding: 1rem 1.4rem; }
-        .ords-info-grid { display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; }
-        .ords-info-item { display: flex; align-items: center; gap: 6px; font-size: 0.83rem; }
-        .ords-ico { color: #94a3b8; flex-shrink: 0; }
-        .ords-info-label { color: #6b7280; }
-        .ords-info-val   { color: #111827; font-weight: 600; }
-
-        /* Footer */
-        .ords-card-ft {
-          display: flex; align-items: center; justify-content: space-between;
-          padding: 0.85rem 1.4rem; border-top: 1px solid #f1f5f9;
-        }
-        .ords-total-wrap { display: flex; align-items: baseline; gap: 8px; }
-        .ords-total-label { font-size: 0.82rem; color: #6b7280; }
-        .ords-total-val   { font-size: 1.15rem; font-weight: 900; color: #dc2626; }
-
-        .ords-detail-btn {
-          display: flex; align-items: center; gap: 4px;
-          font-size: 0.83rem; font-weight: 700; color: #1e3a5f;
-          text-decoration: none; padding: 0.45rem 0.9rem;
-          border: 1.5px solid #1e3a5f; border-radius: 8px;
-          transition: all .15s;
-        }
-        .ords-detail-btn:hover { background: #1e3a5f; color: #fff; }
-
-        .ords-cancel-btn {
-          display: flex; align-items: center; gap: 4px;
-          font-size: 0.83rem; font-weight: 600; color: #dc2626;
-          background: transparent;
-          border: 1px solid #dc2626; border-radius: 8px;
-          padding: 0.45rem 0.9rem; cursor: pointer; transition: all .15s;
-        }
-        .ords-cancel-btn:hover:not(:disabled) { background: #dc2626; color: #fff; }
-        .ords-cancel-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-      `}</style>
     </div>
   );
 };

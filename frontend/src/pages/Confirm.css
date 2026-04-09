@@ -1,0 +1,19 @@
+/* CONFIRM PAGE  (cf-*) */
+.cf-root { min-height: 60vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1.25rem; }
+.cf-card { background: #fff; border: 1px solid var(--bk-border); border-radius: 20px; padding: 2.5rem 2rem; text-align: center; max-width: 520px; width: 100%; box-shadow: var(--bk-shadow-md); }
+.cf-icon-wrap { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 96px; height: 96px; margin: 0 auto 1.5rem; }
+.cf-icon { color: #16a34a; position: relative; z-index: 1; }
+.cf-icon-ring { position: absolute; inset: 0; border-radius: 50%; background: #f0fdf4; border: 2px solid #bbf7d0; animation: cfPulse 1.8s ease infinite; }
+@keyframes cfPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.08); opacity: .85; } }
+.cf-title { font-size: 1.65rem; font-weight: 800; color: var(--bk-primary); margin-bottom: .75rem; }
+.cf-sub { font-size: .9rem; color: var(--bk-muted); line-height: 1.7; margin-bottom: 1.5rem; }
+.cf-info-box { background: var(--bk-cream); border-radius: 14px; padding: 1rem 1.25rem; text-align: left; display: flex; flex-direction: column; gap: .65rem; margin-bottom: 1.25rem; border: 1px solid var(--bk-border); }
+.cf-info-row { display: flex; align-items: flex-start; gap: .75rem; font-size: .85rem; color: var(--bk-text); line-height: 1.5; }
+.cf-info-icon { color: var(--bk-accent); flex-shrink: 0; margin-top: 1px; }
+.cf-redirect-note { font-size: .78rem; color: var(--bk-muted); margin-bottom: 1.25rem; }
+.cf-actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+.cf-btn-home, .cf-btn-shop { display: flex; align-items: center; gap: .4rem; padding: .7rem 1.5rem; border-radius: 50px; font-size: .9rem; font-weight: 700; text-decoration: none; transition: all .2s; }
+.cf-btn-home { background: var(--bk-cream); color: var(--bk-text); border: 1.5px solid var(--bk-border); }
+.cf-btn-home:hover { border-color: var(--bk-primary); color: var(--bk-primary); }
+.cf-btn-shop { background: var(--bk-primary); color: #fff; border: none; }
+.cf-btn-shop:hover { background: var(--bk-accent); }

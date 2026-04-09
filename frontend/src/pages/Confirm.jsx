@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CheckCircle2, BookOpen, Home, Package } from 'lucide-react';
 
+import '../styles/design-system.css';
+import './Confirm.css';
+
 const Confirm = () => {
   const navigate = useNavigate();
 

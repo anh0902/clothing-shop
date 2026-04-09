@@ -1,0 +1,118 @@
+.ck-layout { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 1.25rem; 
+  align-items: start; 
+}
+
+@media (min-width: 1024px) {
+  .ck-layout { 
+    grid-template-columns: 6fr 4fr; 
+    gap: 1.5rem; 
+  }
+}
+.checkout-container { max-width: 1100px !important; margin: 0 auto; padding: 1.5rem 1.25rem; }
+.ck-card-bd { padding: 1.5rem; }
+/* Field Grid for horizontal layout */
+.ck-field-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .ck-field-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Input restoration */
+.ck-layout .ds-input {
+  padding: 0.5rem 0.75rem 0.5rem 2.5rem !important; /* py-2 px-3 */
+  width: 100% !important;
+}
+
+/* Payment */
+.ck-pay-bd { padding: 1.4rem; display: flex; flex-direction: column; gap: 1rem; }
+.ck-pay-opt {
+  display: flex; align-items: center; gap: 12px;
+  padding: 1rem 1.2rem; border: 1.5px solid #e9ecef;
+  border-radius: 12px; cursor: pointer; transition: all .15s; background: #fafbfc;
+  position: relative;
+}
+.ck-pay-opt:hover { border-color: #bfdbfe; background: #fff; }
+.ck-pay-opt.active { border-color: #2563eb; background: #eff6ff; }
+.ck-pay-radio { margin: 0; display: none; }
+.ck-pay-emoji { font-size: 1.5rem; }
+.ck-pay-txt { display: flex; flex-direction: column; gap: 2px; padding-right: 32px; }
+.ck-pay-txt strong { font-size: 0.88rem; color: #111827; }
+.ck-pay-txt span   { font-size: 0.76rem; color: #6b7280; }
+.ck-pay-chk { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
+
+.ck-qr-box {
+  margin-top: 0.5rem; background: #fff; border: 1px solid #e9ecef;
+  border-radius: 12px; padding: 1.5rem; text-align: center;
+}
+.ck-qr-hdr { font-size: 0.88rem; font-weight: 700; color: #111827; margin: 0 0 1rem; }
+.ck-qr-img { width: 140px; height: 140px; border-radius: 12px; border: 1.5px solid #e9ecef; padding: 5px; margin-bottom: 1.25rem; }
+.ck-qr-details { display: flex; flex-direction: column; gap: 0.5rem; text-align: left; background: #f8fafc; padding: 1rem; border-radius: 8px; }
+.ck-qr-row { display: flex; justify-content: space-between; font-size: 0.82rem; }
+.ck-qr-row span   { color: #6b7280; }
+.ck-qr-row strong { color: #111827; font-weight: 700; }
+
+.ck-cod-box {
+  margin-top: 0.5rem; display: flex; align-items: flex-start; gap: 10px;
+  background: #eff6ff; padding: 1rem; border-radius: 10px; border: 1px solid #bfdbfe;
+}
+.ck-cod-box span { font-size: 0.84rem; color: #1e40af; line-height: 1.5; }
+
+/* Summary item */
+.ck-sum-list { display: flex; flex-direction: column; gap: 1rem; }
+.ck-sum-item { display: flex; gap: 12px; align-items: stretch; }
+.ck-sum-img  { width: 48px; height: 64px; object-fit: cover; border-radius: 6px; border: 1px solid #f1f3f6; }
+.ck-sum-info { flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.ck-sum-name { font-size: 0.82rem; font-weight: 600; color: #111827; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ck-sum-qty  { font-size: 0.75rem; color: #6b7280; margin-top: 3px; }
+.ck-sum-price { font-size: 0.85rem; font-weight: 700; color: #374151; display: flex; align-items: center; }
+
+.ck-sum-line { height: 1px; background: #e9ecef; margin: 1.25rem 0; }
+.ck-sum-totals { display: flex; flex-direction: column; gap: 0.6rem; }
+.ck-sum-tr { display: flex; justify-content: space-between; font-size: 0.85rem; color: #4b5563; }
+.ck-sum-grand { margin-top: 0.4rem; font-size: 1.1rem; font-weight: 900; color: #dc2626; }
+.ck-sum-grand span:first-child { color: #111827; font-size: 0.95rem; }
+
+.ck-back {
+  display: block; text-align: center; font-size: 0.83rem;
+  color: #6b7280; text-decoration: none; margin-top: 1.25rem; font-weight: 500;
+}
+.ck-back:hover { color: #1e3a5f; text-decoration: underline; }
+
+/* Removed Desktop-First media query as we moved to Mobile-First */
+
+/* Summary Card Fixes */
+.ck-summary-card {
+  position: relative; /* Default on mobile */
+  background: #ffffff !important;
+  border-radius: 1rem !important; /* rounded-xl */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important; /* shadow-sm */
+  padding: 1.5rem !important; /* p-6 */
+  border: 1px solid #f1f5f9 !important;
+}
+
+@media (min-width: 1024px) {
+  .ck-summary-card {
+    position: sticky;
+    top: 96px; /* top-24 */
+  }
+}
+
+.ck-pay-chk { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); }
+
+.checkout-auto-1 { resize: vertical; min-height: 80px; }
+.checkout-auto-2 { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+/* Clean up auto-generated positions that might overlap */
+.checkout-auto-3 { margin-bottom: 1.5rem; }
+.checkout-auto-5 { /* redundant due to ck-summary-card */ }
+.checkout-auto-8 { margin-top: 1rem; width: 100%; }

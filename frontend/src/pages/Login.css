@@ -1,0 +1,118 @@
+.auth-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9fafb; /* bg-gray-50 */
+  position: relative;
+}
+/* Removed decorative elements to match original design */
+.auth-center {
+  width: 100%;
+  max-width: 448px; /* max-w-md */
+  padding: 1.25rem;
+  z-index: 10;
+}
+.auth-card-premium {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2.25rem 2rem;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+}
+.auth-header-compact {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.auth-logo-box-small {
+  width: 44px; height: 44px;
+  background: #1e3a5f;
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+.auth-title-compact {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1e3a5f;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+}
+.auth-subtitle-compact {
+  color: #64748b;
+  font-size: 0.875rem;
+}
+.auth-form-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* space-y-4 */
+}
+.ds-field-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Improved label-input spacing */
+}
+.ds-label-compact {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #334155;
+  margin-left: 0.5rem;
+}
+.auth-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.auth-forgot-link {
+  font-size: 0.75rem;
+  color: #1e3a5f;
+  text-decoration: none;
+  font-weight: 500;
+}
+.ds-input-refined:focus + .ds-input-ico {
+  color: #1e3a5f;
+}
+.auth-eye-compact {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.premium-btn {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 16px -4px rgba(30, 58, 95, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.premium-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px -4px rgba(30, 58, 95, 0.35);
+}
+.auth-footer-compact {
+  margin-top: 1.5rem;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+}
+.auth-switch-text {
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+.auth-switch-link {
+  color: #1e3a5f;
+  font-weight: 700;
+  text-decoration: none;
+}
+.auth-switch-link:hover {
+  text-decoration: underline;
+}

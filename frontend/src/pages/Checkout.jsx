@@ -9,6 +9,7 @@ import {
   CheckCircle2, ShoppingCart, Loader, AlertCircle
 } from 'lucide-react';
 import '../styles/design-system.css';
+import './Checkout.css';
 
 const fmt = (n) => new Intl.NumberFormat('vi-VN').format(n) + 'đ';
 
@@ -22,16 +23,15 @@ const Field = ({ ico: Ico, id, label, type='text', rows, form, errors, touched, 
   const err = touched[id] && errors[id];
   const ok  = touched[id] && !errors[id];
   return (
-    <div className="ds-field" style={{ marginBottom: rows ? '1rem' : '1.25rem' }}>
+    <div className="ds-field">
       <label className="ds-label" htmlFor={id}>{label}</label>
       <div className="ds-input-wrap" style={{ alignItems: rows ? 'flex-start' : 'center' }}>
         <Ico size={15} className="ds-input-ico" style={rows ? { top: '14px' } : {}} />
         {rows ? (
           <textarea
-            id={id} className={`ds-input${err ? ' has-error' : ok ? ' is-valid' : ''}`}
+            className={`ds-input${err ? ' has-error' : ok ? ' is-valid' : ''} checkout-auto-1`}
             rows={rows} placeholder={`Nhập ${label.toLowerCase()}...`}
             value={form[id]} onChange={e => onChange(id, e.target.value)} onBlur={() => onBlur(id)}
-            style={{ paddingTop: '12px', paddingBottom: '12px', resize: 'vertical', minHeight: '80px' }}
           />
         ) : (
            <input
@@ -40,7 +40,7 @@ const Field = ({ ico: Ico, id, label, type='text', rows, form, errors, touched, 
              value={form[id]} onChange={e => onChange(id, e.target.value)} onBlur={() => onBlur(id)}
            />
         )}
-        {ok && !rows && <CheckCircle2 size={15} color="#059669" style={{ position: 'absolute', right: 12, pointerEvents: 'none' }} />}
+        {ok && !rows && <CheckCircle2 size={15} color="#059669" className="checkout-auto-2" />}
       </div>
       {err && <div className="ds-field-error"><AlertCircle size={11} /> {err}</div>}
     </div>
@@ -123,7 +123,7 @@ const Checkout = () => {
 
   return (
     <div className="ds-page">
-      <div className="ds-wrap">
+      <div className="ds-wrap checkout-container">
         <div className="ds-page-hd">
           <h1 className="ds-page-title"><ShoppingCart size={22} /> Thanh toán</h1>
         </div>
@@ -132,11 +132,13 @@ const Checkout = () => {
           {/* LEFT COL */}
           <div className="ck-col-main">
             {/* Delivery Info */}
-            <div className="ds-card" style={{ marginBottom: '1.25rem' }}>
+            <div className="ds-card checkout-auto-3">
               <h2 className="ds-card-title"><MapPin size={16} /> Thông tin giao hàng</h2>
               <div className="ck-card-bd">
-                <Field id="ten_nguoi_nhan" label="Họ và tên người nhận" ico={User} form={form} errors={errors} touched={touched} onChange={handleChange} onBlur={handleBlur} />
-                <Field id="sdt_nguoi_nhan" label="Số điện thoại"        ico={Phone} type="tel" form={form} errors={errors} touched={touched} onChange={handleChange} onBlur={handleBlur} />
+                <div className="ck-field-grid">
+                  <Field id="ten_nguoi_nhan" label="Họ và tên người nhận" ico={User} form={form} errors={errors} touched={touched} onChange={handleChange} onBlur={handleBlur} />
+                  <Field id="sdt_nguoi_nhan" label="Số điện thoại"        ico={Phone} type="tel" form={form} errors={errors} touched={touched} onChange={handleChange} onBlur={handleBlur} />
+                </div>
                 <Field id="dia_chi_giao_hang" label="Địa chỉ giao hàng" ico={MapPin} rows={3} form={form} errors={errors} touched={touched} onChange={handleChange} onBlur={handleBlur} />
                 <Field id="ghi_chu"         label="Ghi chú đơn hàng"    ico={MessageSquare} rows={2} form={form} errors={errors} touched={touched} onChange={handleChange} onBlur={handleBlur} />
               </div>
@@ -184,7 +186,7 @@ const Checkout = () => {
                       <div className="ck-qr-row"><span>Ngân hàng</span><strong>MB Bank</strong></div>
                       <div className="ck-qr-row"><span>Số tài khoản</span><strong>0948342040</strong></div>
                       <div className="ck-qr-row"><span>Chủ tài khoản</span><strong>VO THAI ANH</strong></div>
-                      <div className="ck-qr-row"><span>Số tiền</span><strong style={{ color: '#dc2626' }}>{fmt(total)}</strong></div>
+                      <div className="ck-qr-row"><span>Số tiền</span><strong className="checkout-auto-4">{fmt(total)}</strong></div>
                       <div className="ck-qr-row"><span>Nội dung</span><strong>Thanh toan BookOne</strong></div>
                     </div>
                   </div>
@@ -202,11 +204,11 @@ const Checkout = () => {
 
           {/* RIGHT COL (Summary) */}
           <div className="ck-col-side">
-            <div className="ds-card" style={{ position: 'sticky', top: '80px' }}>
+            <div className="ck-summary-card">
               <h2 className="ds-card-title">Tóm tắt đơn hàng</h2>
               <div className="ck-card-bd">
                 {loadingCart ? (
-                  <Loader size={24} className="ds-spin" style={{ margin: '2rem auto', display: 'block', color: '#1e3a5f' }} />
+                  <Loader size={24} className="ds-spin checkout-auto-6" />
                 ) : (
                   <div className="ck-sum-list">
                     {cartItems.map(it => (
@@ -226,11 +228,11 @@ const Checkout = () => {
 
                 <div className="ck-sum-totals">
                   <div className="ck-sum-tr"><span>Tạm tính</span><span>{fmt(total)}</span></div>
-                  <div className="ck-sum-tr"><span>Phí giao hàng</span><span style={{ color: '#059669', fontWeight: 600 }}>Miễn phí</span></div>
+                  <div className="ck-sum-tr"><span>Phí giao hàng</span><span className="checkout-auto-7">Miễn phí</span></div>
                   <div className="ck-sum-tr ck-sum-grand"><span>Tổng cộng</span><span>{fmt(total)}</span></div>
                 </div>
 
-                <button type="submit" className="ds-btn-primary" disabled={submitting || loadingCart} style={{ marginTop: '1rem', padding: '0.85rem' }}>
+                <button type="submit" className="ds-btn-primary" disabled={submitting || loadingCart}>
                   {submitting
                     ? <><Loader size={17} className="ds-spin" /> Đang thiết lập...</>
                     : 'Xác nhận đặt hàng'
@@ -242,70 +244,6 @@ const Checkout = () => {
           </div>
         </form>
       </div>
-
-      <style>{`
-        .ck-layout { display: grid; grid-template-columns: 1fr 340px; gap: 1.25rem; align-items: start; }
-        .ck-card-bd { padding: 1.4rem; }
-
-        /* Payment */
-        .ck-pay-bd { padding: 1.4rem; display: flex; flex-direction: column; gap: 0.8rem; }
-        .ck-pay-opt {
-          display: flex; align-items: center; gap: 12px;
-          padding: 1rem 1.2rem; border: 1.5px solid #e9ecef;
-          border-radius: 12px; cursor: pointer; transition: all .15s; background: #fafbfc;
-          position: relative;
-        }
-        .ck-pay-opt:hover { border-color: #bfdbfe; background: #fff; }
-        .ck-pay-opt.active { border-color: #2563eb; background: #eff6ff; }
-        .ck-pay-radio { margin: 0; display: none; }
-        .ck-pay-emoji { font-size: 1.5rem; }
-        .ck-pay-txt { display: flex; flex-direction: column; gap: 2px; }
-        .ck-pay-txt strong { font-size: 0.88rem; color: #111827; }
-        .ck-pay-txt span   { font-size: 0.76rem; color: #6b7280; }
-        .ck-pay-chk { position: absolute; right: 16px; }
-
-        .ck-qr-box {
-          margin-top: 0.5rem; background: #fff; border: 1px solid #e9ecef;
-          border-radius: 12px; padding: 1.5rem; text-align: center;
-        }
-        .ck-qr-hdr { font-size: 0.88rem; font-weight: 700; color: #111827; margin: 0 0 1rem; }
-        .ck-qr-img { width: 140px; height: 140px; border-radius: 12px; border: 1.5px solid #e9ecef; padding: 5px; margin-bottom: 1.25rem; }
-        .ck-qr-details { display: flex; flex-direction: column; gap: 0.5rem; text-align: left; background: #f8fafc; padding: 1rem; border-radius: 8px; }
-        .ck-qr-row { display: flex; justify-content: space-between; font-size: 0.82rem; }
-        .ck-qr-row span   { color: #6b7280; }
-        .ck-qr-row strong { color: #111827; font-weight: 700; }
-
-        .ck-cod-box {
-          margin-top: 0.5rem; display: flex; align-items: flex-start; gap: 10px;
-          background: #eff6ff; padding: 1rem; border-radius: 10px; border: 1px solid #bfdbfe;
-        }
-        .ck-cod-box span { font-size: 0.84rem; color: #1e40af; line-height: 1.5; }
-
-        /* Summary item */
-        .ck-sum-list { display: flex; flex-direction: column; gap: 1rem; }
-        .ck-sum-item { display: flex; gap: 12px; align-items: stretch; }
-        .ck-sum-img  { width: 48px; height: 64px; object-fit: cover; border-radius: 6px; border: 1px solid #f1f3f6; }
-        .ck-sum-info { flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
-        .ck-sum-name { font-size: 0.82rem; font-weight: 600; color: #111827; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .ck-sum-qty  { font-size: 0.75rem; color: #6b7280; margin-top: 3px; }
-        .ck-sum-price { font-size: 0.85rem; font-weight: 700; color: #374151; display: flex; align-items: center; }
-
-        .ck-sum-line { height: 1px; background: #e9ecef; margin: 1.25rem 0; }
-        .ck-sum-totals { display: flex; flex-direction: column; gap: 0.6rem; }
-        .ck-sum-tr { display: flex; justify-content: space-between; font-size: 0.85rem; color: #4b5563; }
-        .ck-sum-grand { margin-top: 0.4rem; font-size: 1.1rem; font-weight: 900; color: #dc2626; }
-        .ck-sum-grand span:first-child { color: #111827; font-size: 0.95rem; }
-
-        .ck-back {
-          display: block; text-align: center; font-size: 0.83rem;
-          color: #6b7280; text-decoration: none; margin-top: 1.25rem; font-weight: 500;
-        }
-        .ck-back:hover { color: #1e3a5f; text-decoration: underline; }
-
-        @media (max-width: 900px) {
-          .ck-layout { grid-template-columns: 1fr; }
-        }
-      `}</style>
     </div>
   );
 };

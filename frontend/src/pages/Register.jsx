@@ -4,6 +4,7 @@ import axiosClient from '../axiosClient';
 import toast from 'react-hot-toast';
 import { User, Mail, Phone, MapPin, Lock, Eye, EyeOff, BookOpen, Loader } from 'lucide-react';
 import '../styles/design-system.css';
+import './Register.css';
 
 // ── CRITICAL FIX: Field định nghĩa NGOÀI Register để React không unmount/remount
 // khi state thay đổi, gây mất focus sau mỗi lần gõ phím.
@@ -117,61 +118,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-
-      <style>{`
-        .auth-root {
-          min-height: 100vh; display: flex; align-items: center; justify-content: center;
-          background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-        }
-        .auth-center { width: 100%; max-width: 640px; padding: 1.5rem; }
-        .auth-card-premium {
-          background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
-          border-radius: 24px; border: 1px solid #e2e8f0;
-          padding: 2.5rem; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.1);
-        }
-        .auth-header-compact { text-align: center; margin-bottom: 1.75rem; }
-        .auth-logo-box-small {
-          width: 44px; height: 44px; background: #1e3a5f; color: #fff;
-          border-radius: 12px; display: flex; align-items: center; justify-content: center;
-          margin: 0 auto 1rem;
-        }
-        .auth-title-compact { font-size: 1.5rem; font-weight: 800; color: #1e3a5f; margin-bottom: 0.25rem; }
-        .auth-subtitle-compact { color: #64748b; font-size: 0.9rem; }
-
-        .auth-form-compact { display: flex; flex-direction: column; gap: 1rem; }
-        .auth-grid-compact { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
-
-        .ds-field-compact { display: flex; flex-direction: column; gap: 0.35rem; }
-        .ds-label-compact { font-size: 0.8125rem; font-weight: 600; color: #334155; }
-
-        .ds-input-refined {
-          width: 100%; border-radius: 10px; background: #fff;
-          border: 1.5px solid #e2e8f0;
-          padding: 0.625rem 1rem 0.625rem 2.5rem;
-          font-size: 0.9375rem; font-family: inherit;
-          transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .ds-input-refined:focus { border-color: #1e3a5f; box-shadow: 0 0 0 3px rgba(30,58,95,0.08); outline: none; }
-        .ds-input-pass { padding-right: 2.5rem; }
-
-        .ds-input-ico { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8; pointer-events: none; }
-        .auth-eye-compact {
-          position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-          color: #94a3b8; background: none; border: none; cursor: pointer; padding: 0;
-        }
-
-        .premium-btn { margin-top: 0.5rem; padding: 0.8rem; font-weight: 700; }
-
-        .auth-footer-compact { margin-top: 1.5rem; text-align: center; padding-top: 1rem; border-top: 1px solid #f1f5f9; }
-        .auth-switch-text { font-size: 0.8125rem; color: #64748b; }
-        .auth-switch-link { color: #1e3a5f; font-weight: 700; text-decoration: none; }
-        .auth-switch-link:hover { text-decoration: underline; }
-
-        @media (max-width: 600px) {
-          .auth-grid-compact { grid-template-columns: 1fr; }
-          .auth-card-premium { padding: 2rem 1.5rem; }
-        }
-      `}</style>
     </div>
   );
 };

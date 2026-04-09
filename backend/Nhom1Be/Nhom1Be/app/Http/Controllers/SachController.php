@@ -28,8 +28,10 @@ class SachController extends Controller
         ]);
         try {
             if ($request->hasFile('anh_bia')) {
-                $path = $request->file('anh_bia')->store('books', 'public');
-                $validatedData['anh_bia'] = asset('storage/' . $path);
+                $file = $request->file('anh_bia');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('assets/product'), $fileName);
+                $validatedData['anh_bia'] = 'assets/product/' . $fileName;
             }
 
             $sach = Sach::create($validatedData);

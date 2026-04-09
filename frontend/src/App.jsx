@@ -23,7 +23,32 @@ import Orders from './pages/Orders';
 import OrderDetail from './pages/OrderDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import AdminApp from './book-admin/AdminApp';
 
+const MainLayout = ({ children }) => {
+  const location = useLocation();
+  const isAdminPath = location.pathname.startsWith('/admin');
+
+  if (isAdminPath) {
+    return (
+      <>
+        {children}
+        <Toaster position="top-right" />
+      </>
+    );
+  }
+
+  return (
+    <div className="app-container">
+      <Header />
+      <main className="app-main">
+        {children}
+      </main>
+      <Footer />
+      <Toaster position="top-right" />
+    </div>
+  );
+};
 const AnimatedRoutes = () => {
   const location = useLocation();
   return (
@@ -44,6 +69,7 @@ const AnimatedRoutes = () => {
         <Route path="/orders/:id" element={<PageWrapper><OrderDetail /></PageWrapper>} />
         <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
         <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+        <Route path="/admin/*" element={<AdminApp />} />
         <Route path="*" element={<PageWrapper><Home /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
@@ -66,16 +92,9 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <Router>
-          <div className="app-container">
-            <Header />
-            
-            <main className="app-main">
-              <AnimatedRoutes />
-            </main>
-
-            <Footer />
-            <Toaster position="top-right" />
-          </div>
+          <MainLayout>
+            <AnimatedRoutes />
+          </MainLayout>
         </Router>
       </CartProvider>
     </AuthProvider>

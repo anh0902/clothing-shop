@@ -1,0 +1,57 @@
+.ords-list { display: flex; flex-direction: column; gap: 1rem; }
+
+/* Card */
+.ords-card { overflow: hidden; }
+.ords-card-hd {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.4rem; border-bottom: 1px solid #f1f5f9; background: #fafbfc;
+}
+.ords-card-id { display: flex; align-items: baseline; gap: 6px; }
+.ords-id-label { font-size: 0.78rem; color: #6b7280; font-weight: 500; }
+.ords-id-val   { font-size: 0.98rem; font-weight: 900; color: #1e3a5f; }
+
+/* Body */
+.ords-card-body { padding: 1rem 1.4rem; }
+.ords-info-grid { display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; }
+.ords-info-item { display: flex; align-items: center; gap: 6px; font-size: 0.83rem; }
+.ords-ico { color: #94a3b8; flex-shrink: 0; }
+.ords-info-label { color: #6b7280; }
+.ords-info-val   { color: #111827; font-weight: 600; }
+
+/* Footer */
+.ords-card-ft {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.85rem 1.4rem; border-top: 1px solid #f1f5f9;
+}
+.ords-total-wrap { display: flex; align-items: baseline; gap: 8px; }
+.ords-total-label { font-size: 0.82rem; color: #6b7280; }
+.ords-total-val   { font-size: 1.15rem; font-weight: 900; color: #dc2626; }
+
+.ords-detail-btn {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 0.83rem; font-weight: 700; color: #1e3a5f;
+  text-decoration: none; padding: 0.45rem 0.9rem;
+  border: 1.5px solid #1e3a5f; border-radius: 8px;
+  transition: all .15s;
+}
+.ords-detail-btn:hover { background: #1e3a5f; color: #fff; }
+
+.ords-cancel-btn {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 0.83rem; font-weight: 600; color: #dc2626;
+  background: transparent;
+  border: 1px solid #dc2626; border-radius: 8px;
+  padding: 0.45rem 0.9rem; cursor: pointer; transition: all .15s;
+}
+.ords-cancel-btn:hover:not(:disabled) { background: #dc2626; color: #fff; }
+.ords-cancel-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Generated classes from inline styles */
+.orders-auto-1 { display: flex; justify-content: center; padding: 5rem 0; }
+.orders-auto-2 { color: #1e3a5f; }
+.orders-auto-3 { text-align: center; padding: 4rem 2rem; }
+.orders-auto-4 { color: #d1d5db; margin-bottom: 14px; }
+.orders-auto-5 { font-weight: 800; color: #111827; margin-bottom: 8px; }
+.orders-auto-6 { color: #6b7280; margin-bottom: 20px; }
+.orders-auto-7 { width: auto; padding: 0.7rem 2rem; margin: 0 auto; }
+.orders-auto-8 { display: flex; gap: 0.75rem; }

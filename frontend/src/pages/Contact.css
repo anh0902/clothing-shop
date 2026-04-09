@@ -1,0 +1,56 @@
+.ctm-hero { padding: 6rem 0 3rem; background: #f8fafc; border-bottom: 1px solid #f1f5f9; }
+.ctm-title { font-size: clamp(3rem, 6vw, 4rem); font-weight: 900; color: #111827; letter-spacing: -0.03em; margin-bottom: 1rem; }
+.ctm-subtitle { font-size: 1.15rem; color: #4b5563; max-width: 600px; line-height: 1.6; }
+
+.ctm-body { padding: 5rem 0 7rem; }
+.ctm-layout { display: grid; grid-template-columns: 350px 1fr; gap: 4rem; align-items: start; }
+
+/* ──── Left Info ──── */
+.ctm-info-list { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem; padding-top: 1rem; }
+.ctm-info-item { display: flex; gap: 1rem; color: #1e3a5f; }
+.ctm-info-item strong { display: block; font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; color: #111827; }
+.ctm-info-item p { margin: 0; font-size: 0.95rem; color: #4b5563; line-height: 1.5; }
+
+.ctm-map-box { height: 250px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; background: #f1f5f9; }
+/* Tối giản hóa bản đồ bằng CSS Filter: Đen trắng nhẹ */
+.ctm-map-iframe { filter: grayscale(100%) opacity(0.85) contrast(1.1); transition: filter 0.3s; }
+.ctm-map-box:hover .ctm-map-iframe { filter: grayscale(0%) opacity(1) contrast(1); }
+
+/* ──── Right Form ──── */
+.ctm-form-col { background: #fff; border: 1px solid #e2e8f0; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+.ctm-h3 { font-size: 1.5rem; font-weight: 800; color: #111827; margin-bottom: 0.5rem; }
+.ctm-p { font-size: 0.95rem; color: #64748b; margin-bottom: 2rem; }
+
+.ctm-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.ctm-field-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+.ctm-field { display: flex; flex-direction: column; gap: 0.5rem; }
+.ctm-field label { font-size: 0.85rem; font-weight: 600; color: #374151; }
+.ctm-field input, .ctm-field textarea {
+  width: 100%; padding: 0.8rem 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px;
+  font-family: inherit; font-size: 0.95rem; color: #1f2937; transition: border-color 0.2s;
+}
+.ctm-field input:focus, .ctm-field textarea:focus { outline: none; border-color: #1e3a5f; background: #fff; }
+.ctm-field input.error, .ctm-field textarea.error { border-color: #ef4444; }
+.ctm-err { font-size: 0.8rem; color: #ef4444; font-weight: 500; }
+
+.ctm-sent { padding: 4rem 2rem; text-align: center; border: 1px dashed #cbd5e1; border-radius: 8px; }
+
+@media (max-width: 900px) {
+  .ctm-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .ctm-info-list { gap: 1.5rem; margin-bottom: 2rem; flex-direction: row; flex-wrap: wrap; }
+  .ctm-info-item { width: calc(50% - 1rem); }
+}
+@media (max-width: 600px) {
+  .ctm-hero { padding: 4rem 0 2rem; }
+  .ctm-form-col { padding: 1.5rem; }
+  .ctm-info-item { width: 100%; }
+  .ctm-field-group { grid-template-columns: 1fr; }
+}
+
+/* Generated classes from inline styles */
+.contact-auto-1 { padding: 0 !important; background-color: #ffffff !important; }
+.contact-auto-2 { border: 0; }
+.contact-auto-3 { margin-bottom: 1.5rem; }
+.contact-auto-4 { width: auto !important; }
+.contact-auto-5 { margin-top: 1rem !important; width: auto !important; padding: 0.9rem 2.5rem !important; }
