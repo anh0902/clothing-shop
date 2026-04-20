@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 // 1. Instance cho Laravel (User)
+const userBaseURL = (import.meta.env.VITE_API_USER_URL || import.meta.env.VITE_USER_API_URL || 'http://localhost:8000/api').replace(/\/+$/, '');
 export const userAxios = axios.create({
-  baseURL: import.meta.env.VITE_USER_API_URL || 'http://localhost:8000/api',
+  baseURL: userBaseURL,
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -10,8 +11,9 @@ export const userAxios = axios.create({
 });
 
 // 2. Instance cho Spring Boot (Admin)
+const adminBaseURL = (import.meta.env.VITE_API_ADMIN_URL || import.meta.env.VITE_ADMIN_API_URL || 'http://localhost:8080/api').replace(/\/+$/, '');
 export const adminAxios = axios.create({
-  baseURL: import.meta.env.VITE_ADMIN_API_URL || 'http://localhost:8080/api',
+  baseURL: adminBaseURL,
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
