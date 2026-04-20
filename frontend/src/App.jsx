@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { AuthProvider } from './AuthContext';
-import { CartProvider } from './CartContext';
+import { AuthProvider } from './contexts/AuthContext';
+import { CartProvider } from './contexts/CartContext';
 import { motion, AnimatePresence } from 'motion/react';
 
 // Components
@@ -10,20 +10,20 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 // Pages
-import Home from './pages/Home';
-import Category from './pages/Category';
-import ProductDetail from './pages/ProductDetail';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
-import Confirm from './pages/Confirm';
-import Profile from './pages/Profile';
-import Orders from './pages/Orders';
-import OrderDetail from './pages/OrderDetail';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import AdminApp from './book-admin/AdminApp';
+import Home from './pages/user/Home';
+import Category from './pages/user/Category';
+import ProductDetail from './pages/user/ProductDetail';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
+import Cart from './pages/user/Cart';
+import Checkout from './pages/user/Checkout';
+import Confirm from './pages/user/Confirm';
+import Profile from './pages/user/Profile';
+import Orders from './pages/user/Orders';
+import OrderDetail from './pages/user/OrderDetail';
+import About from './pages/user/About';
+import Contact from './pages/user/Contact';
+import AdminApp from './pages/admin/AdminApp';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const MainLayout = ({ children }) => {

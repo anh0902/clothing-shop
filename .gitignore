@@ -1,0 +1,40 @@
+# --- Global / System ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+*.sql
+*.zip
+*.tar.gz
+
+# --- Frontend (React/Vite) ---
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/coverage/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# --- Backend: Spring Boot (Java) ---
+backend/api_admin_nhasach/target/
+backend/api_admin_nhasach/.mvn/wrapper/maven-wrapper.jar
+backend/api_admin_nhasach/*.class
+backend/api_admin_nhasach/.project
+backend/api_admin_nhasach/.classpath
+backend/api_admin_nhasach/.settings/
+
+# --- Backend: Laravel (PHP) ---
+backend/Nhom1Be/vendor/
+backend/Nhom1Be/node_modules/
+backend/Nhom1Be/public/storage
+backend/Nhom1Be/public/build
+backend/Nhom1Be/storage/*.key
+backend/Nhom1Be/.env
+backend/Nhom1Be/.env.backup
+backend/Nhom1Be/.phpunit.result.cache
+backend/Nhom1Be/Homestead.json
+backend/Nhom1Be/Homestead.yaml
+backend/Nhom1Be/auth.json
