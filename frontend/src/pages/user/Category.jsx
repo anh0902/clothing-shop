@@ -150,6 +150,36 @@ const Category = () => {
       .catch(() => {});
   }, []);
 
+  // header lọc loại sách , nhà xuất bản 
+  useEffect(() => {
+    const searchQ = searchParams.get('search');
+    if (searchQ && categories.length > 0) {
+      const q = searchQ.trim().toLowerCase();
+      
+      // 1. Tìm loại sách
+      const matchedCat = categories.find(cat => 
+        cat.ten_loai.toLowerCase().includes(q)
+      );
+
+      if (matchedCat) {
+        // Map to Category ID
+        setFilters(prev => ({ 
+          ...prev, 
+          loai_sach_id: matchedCat.id, 
+          nha_xuat_ban: '' 
+        }));
+      } else {
+        // 2. Tìm nhà xuất bản
+        setFilters(prev => ({ 
+          ...prev, 
+          loai_sach_id: '', 
+          nha_xuat_ban: searchQ.trim() 
+        }));
+      }
+      setCurrentPage(1);
+    }
+  }, [searchParams, categories]);
+
   const fetchBooks = useCallback(async () => {
     setLoading(true);
     setError(false);

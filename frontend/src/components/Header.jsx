@@ -173,15 +173,15 @@ const Header = () => {
 
         {/* Mobile nav */}
         <nav className="hd4-mob-nav">
-          <Link to="/"         className="hd4-mob-a" onClick={closeM}>🏠 Trang chủ</Link>
-          <Link to="/category" className="hd4-mob-a" onClick={closeM}>📚 Sản phẩm</Link>
-          <Link to="/about"    className="hd4-mob-a" onClick={closeM}>ℹ️ Về chúng tôi</Link>
-          <Link to="/contact"  className="hd4-mob-a" onClick={closeM}>📞 Liên hệ</Link>
+          <Link to="/"         className="hd4-mob-a" onClick={closeM}>Trang chủ</Link>
+          <Link to="/category" className="hd4-mob-a" onClick={closeM}>Sản phẩm</Link>
+          <Link to="/about"    className="hd4-mob-a" onClick={closeM}>ℹVề chúng tôi</Link>
+          <Link to="/contact"  className="hd4-mob-a" onClick={closeM}>Liên hệ</Link>
           {user && <>
-            <Link to="/profile" className="hd4-mob-a" onClick={closeM}>👤 Tài khoản</Link>
-            <Link to="/orders"  className="hd4-mob-a" onClick={closeM}>📦 Đơn hàng</Link>
+            <Link to="/profile" className="hd4-mob-a" onClick={closeM}>Tài khoản</Link>
+            <Link to="/orders"  className="hd4-mob-a" onClick={closeM}>Đơn hàng</Link>
             <button className="hd4-mob-a hd4-mob-logout" onClick={() => { handleLogout(); closeM(); }}>
-              🚪 Đăng xuất
+              Đăng xuất
             </button>
           </>}
           {!user && (
