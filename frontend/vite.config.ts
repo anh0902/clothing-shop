@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: './',
     plugins: [react(), tailwind()],
     resolve: {
       alias: {
@@ -14,17 +15,17 @@ export default defineConfig(() => {
     server: {
       hmr: process.env.DISABLE_HMR !== 'true',
       proxy: {
-        '/api-user': {
-          target: 'https://nhom1be.onrender.com',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api-user/, ''),
-        },
         '/api-admin': {
-          target: 'https://webchieut6.onrender.com',
+          target: 'http://localhost:8080/api',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api-admin/, ''),
+          rewrite: (path) => path.replace(/^\/api-admin/, '')
         },
-      },
+        '/api-user': {
+          target: 'http://localhost:8000/api',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api-user/, '')
+        }
+      }
     },
   };
 });

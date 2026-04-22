@@ -1,0 +1,215 @@
+:root {
+  /* Tesla Design Tokens */
+  --admin-primary: #3E6AE1;    /* Electric Blue */
+  --admin-primary-dark: #3255b5;
+  --admin-bg-pure: #FFFFFF;     /* White Canvas */
+  --admin-bg-ash: #F4F4F4;      /* Light Ash */
+  --admin-text-head: #171A20;   /* Carbon Dark */
+  --admin-text-body: #393C41;   /* Graphite */
+  --admin-text-muted: #5C5E62;  /* Pewter */
+  --admin-text-light: #8E8E8E;  /* Silver Fog */
+  --admin-divider: #EEEEEE;     /* Cloud Gray */
+  --admin-sidebar-w: 260px;
+  --admin-sidebar-collapsed: 80px;
+  --admin-radius: 4px;          /* Tesla Precision Radius */
+}
+
+.admin-wrapper {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--admin-text-body);
+  background: var(--admin-bg-pure);
+  min-height: 100vh;
+  display: flex;
+}
+
+.admin-wrapper .admin-sidebar {
+  width: var(--admin-sidebar-w);
+  background: var(--admin-bg-pure);
+  color: var(--admin-text-head);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  border-right: 1px solid var(--admin-divider);
+  transition: width 0.33s cubic-bezier(0.5, 0, 0, 0.75);
+}
+
+.admin-wrapper .admin-main {
+  flex: 1;
+  margin-left: var(--admin-sidebar-w);
+  min-width: 0;
+  background-color: var(--admin-bg-pure);
+  min-height: 100vh;
+  transition: margin-left 0.33s cubic-bezier(0.5, 0, 0, 0.75);
+}
+
+.admin-wrapper .admin-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85); /* Frosted Glass Base */
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--admin-divider);
+  padding: 12px 32px;
+  color: var(--admin-text-head);
+}
+
+.admin-wrapper .admin-content {
+  padding: 32px;
+}
+
+/* Typography Reset */
+h1, h2, h3, h4 {
+  color: var(--admin-text-head);
+  letter-spacing: -0.01em;
+}
+
+/* Tables - Tesla Minimalist */
+.admin-wrapper .admin-table-container {
+  border-radius: var(--admin-radius);
+  border: none;
+  background: var(--admin-bg-pure);
+  overflow: visible; 
+}
+
+.admin-wrapper .admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-wrapper .admin-table th {
+  background: transparent;
+  padding: 14px 16px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--admin-text-muted);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-align: left;
+  border-bottom: 1px solid var(--admin-divider);
+}
+
+.admin-wrapper .admin-table td {
+  padding: 16px 16px;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--admin-divider);
+  color: var(--admin-text-body);
+}
+
+.admin-wrapper .admin-table tr:hover td {
+  background: var(--admin-bg-ash);
+}
+
+.admin-wrapper .text-center {
+  text-align: center;
+}
+
+/* Buttons - Tesla Standard 4px */
+.admin-wrapper .btn {
+  padding: 8px 24px;
+  border-radius: var(--admin-radius);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  transition: all 0.33s cubic-bezier(0.5, 0, 0, 0.75);
+  width: fit-content;
+  min-height: 40px;
+}
+
+.admin-wrapper .btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.admin-wrapper .btn-primary {
+  background: var(--admin-primary);
+  color: #fff;
+}
+
+.admin-wrapper .btn-primary:hover:not(:disabled) {
+  background: var(--admin-primary-dark);
+}
+
+.admin-wrapper .btn-danger {
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid transparent;
+}
+
+.admin-wrapper .btn-danger:hover:not(:disabled) {
+  background: #fee2e2;
+}
+
+.admin-wrapper .btn-secondary {
+  background: var(--admin-bg-ash);
+  color: var(--admin-text-body);
+}
+
+.admin-wrapper .btn-secondary:hover:not(:disabled) {
+  background: #ededed;
+}
+
+/* Forms - Transparent Precision */
+.admin-wrapper .form-group {
+  margin-bottom: 24px;
+}
+
+.admin-wrapper .form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--admin-text-muted);
+  margin-bottom: 8px;
+}
+
+.admin-wrapper .form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--admin-radius);
+  border: 1px solid #d0d1d2;
+  font-size: 14px;
+  transition: border-color 0.33s;
+  outline: none;
+  background: transparent;
+  color: var(--admin-text-head);
+}
+
+.admin-wrapper .form-control:focus {
+  border-color: var(--admin-primary);
+}
+
+/* Skeletons */
+.admin-wrapper .skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Layout Animate */
+.animate-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+

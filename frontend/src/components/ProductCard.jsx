@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getImageUrl } from '../utils/urlHelper';
+import { getImageUrl } from '../utils';
 
 // ── ProductCard tối giản theo đúng thiết kế mẫu ──────────────────────────────
 const ProductCard = ({ sach }) => {

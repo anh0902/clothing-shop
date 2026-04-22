@@ -1,7 +1,4 @@
 {
-  "builder.serverUrl": "",
-  "builder.command": "",
-  "builder.runDevServer": false,
-  "builder.autoDetectDevServer": true,
-  "builder.launchType": "editor"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.compile.nullAnalysis.mode": "automatic"
 }
